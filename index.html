@@ -1,11 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="truckparkingNederland">
+  <meta property="og:description"
+    content="TruckParking Nederland - актуальная информация о заполняемости грузовых парковок Нидерландов.">
+  <meta property="og:image" content="https://siarheikazakevich.github.io/truckparkingNederland/photos/logo.webp">
+  <meta property="og:url" content="https://siarheikazakevich.github.io/truckparkingNederland/">
+  <meta name="theme-color" content="#101820">
+  <title>TruckParkingNederland</title>
+  <!-- Основные стили -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="./photos/logoTPN.webp" type="image/webp">
 </head>
+
 <body>
-  
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="./photos/logoTPN.webp">
+        <span class="logo-icon">TP</span>
+        <span class="logo-text">TruckParking<strong>Nederland</strong></span>
+      </a>
+      <div class="header-controls">
+        <div class="live-indicator">
+          <span class="live-dot"></span>
+          <span data-i18n="liveData">Данные NDW</span>
+        </div>
+        <!-- Переключение языков -->
+        <div class="language-selector">
+          <select id="languageSelect" aria-label="Выбор языка">
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="be">🇧🇾 Беларуская</option>
+            <option value="uk">🇺🇦 Українська</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ================= MAIN ================= -->
+  <main class="main">
+    <div class="container">
+      <!-- INTRO SECTION -->
+      <section class="intro-section">
+        <div class="intro-content">
+          <div class="eyebrow" data-i18n="eyebrow">
+            ГРУЗОВЫЕ ПАРКОВКИ · НИДЕРЛАНДЫ
+          </div>
+          <h1 data-i18n="headline">Найди свободное место<span>для своего грузовика.</span></h1>
+          <p class="intro-description" data-i18n="description">
+            Актуальная информация о загруженности
+            грузовых парковок Нидерландов
+            в одном месте.
+          </p>
+        </div>
+        <!-- Время обновления -->
+        <div class="update-card">
+          <span class="update-label" data-i18n="lastUpdate">Последнее обновление</span>
+          <strong id="lastUpdateTime">-</strong>
+          <span class="update-source" data-i18n="dataSource">Источник: NDW</span>
+        </div>
+      </section>
+      <!-- ================= STATISTICS ================= -->
+      <section class="statistics-section">
+        <div class="stat-card">
+          <div class="stat-label" data-i18n="parkingCount">
+            Парковок в списке
+          </div>
+          <div class="stat-value" id="parkingCount">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label" data-i18n="totalCapacity">
+            Общая вместимость
+          </div>
+          <div class="stat-value" id="totalCapacity">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Свободные места</div>
+          <div class="stat-value" id="freeSpaces">-</div>
+        </div>
+      </section>
+      <!-- ================= SEARCH ================= -->
+      <section class="parking-controls">
+        <div class="search-box">
+          <span class="search-icon">⌕</span>
+          <input type="search" id="parkingSearch" data-i18n-placeholder="searchPlaceholder"
+            placeholder="Поиск парковки или города..." autocomplete="off">
+        </div>
+        <!-- Фильтр -->
+        <div class="filter-box">
+          <select id="parkingFilter">
+            <option value="all" data-i18n="filterAll">
+              Все парковки
+            </option>
+            <option value="available" data-i18n="filterAvailable">
+              Есть свободные места
+            </option>
+            <option value="full" data-i18n="filterFull">
+              Заполненные
+            </option>
+            <option value="unknown" data-i18n="filterUnknown">
+              Нет данных
+            </option>
+          </select>
+        </div>
+        <!-- Обновление -->
+        <button id="refreshButton" class="refresh-button" type="button">
+          <span class="refresh-icon">↻</span>
+          <span data-i18n="refresh">Обновить</span>
+
+        </button>
+      </section>
+
+      <!-- ================= PARKING LIST ================= -->
+      <section class="parking-section">
+        <div class="section-header">
+          <h2 data-i18n="parkingTitle">Грузовые парковки</h2>
+          <span class="result-count" id="parkingResultCount">—</span>
+        </div>
+        <!--
+                    JavaScript будет добавлять сюда
+                    карточки парковок из parking.json
+                -->
+        <div class="parking-grid" id="parkingList"></div>
+        <!-- Сообщение при отсутствии результатов -->
+        <div class="empty-message" id="emptyMessage" hidden>
+          <span class="empty-icon">⌕</span>
+          <p data-i18n="noResults">Парковки не найдены.</p>
+        </div>
+        <!-- Ошибка загрузки -->
+        <div class="error-message" id="errorMessage" hidden>
+          <p data-i18n="loadError">
+            Не удалось загрузить данные парковок.
+          </p>
+          <button id="retryButton" type="button" data-i18n="retry">Повторить</button>
+        </div>
+      </section>
+
+      <!-- ================= FOOTER ================= -->
+      <footer class="footer">
+        <div class="footer-brand">TruckParking Nederland</div>
+        <div class="footer-description" data-i18n="footerDescription">
+          Информация о грузовых парковках
+          Нидерландов.
+        </div>
+        <div class="footer-disclaimer" data-i18n="disclaimer">
+          Данные могут обновляться с задержкой.
+          Перед въездом проверяйте доступность
+          мест непосредственно на парковке.
+        </div>
+        <div class="footer-copyright">
+          © 2026 TruckParking Nederland
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script src="assets/js/app.js"></script>
+
+
 </body>
+
 </html>
