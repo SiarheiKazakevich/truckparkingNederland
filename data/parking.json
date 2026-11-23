@@ -1,0 +1,59 @@
+{
+  "updated_at": null,
+  "parkings": [
+    {
+      "id": "hazeldonk",
+      "name": "Truckparking Hazeldonk",
+      "location": "Hazeldonk, Netherlands",
+      "capacity": null,
+      "free": null,
+      "source": "NDW - pending verification",
+      "updated": null
+    },
+    {
+      "id": "bodaanweg",
+      "name": "Truckparking Bodaanweg",
+      "location": "Rotterdam, Netherlands",
+      "capacity": null,
+      "free": null,
+      "source": "NDW - pending verification",
+      "updated": null
+    },
+    {
+      "id": "maasvlakte-plaza-zuid",
+      "name": "Maasvlakte Plaza Zuid",
+      "location": "Maasvlakte, Netherlands",
+      "capacity": null,
+      "free": null,
+      "source": "NDW - pending verification",
+      "updated": null
+    },
+    {
+      "id": "parking-de-punt",
+      "name": "Parking De Punt",
+      "location": "Netherlands",
+      "capacity": null,
+      "free": null,
+      "source": "NDW - pending verification",
+      "updated": null
+    },
+    {
+      "id": "deventer",
+      "name": "Truckparking Deventer",
+      "location": "Deventer, Netherlands",
+      "capacity": null,
+      "free": null,
+      "source": "NDW - pending verification",
+      "updated": null
+    },
+    {
+      "id": "waalhaven",
+      "name": "Truckparking Waalhaven",
+      "location": "Rotterdam, Netherlands",
+      "capacity": null,
+      "free": null,
+      "source": "NDW - pending verification",
+      "updated": null
+    }
+  ]
+}
